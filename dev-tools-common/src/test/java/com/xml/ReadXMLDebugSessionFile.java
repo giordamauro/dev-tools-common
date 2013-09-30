@@ -12,7 +12,7 @@ import org.jdom.Element;
 
 import com.util.XmlUtils;
 
-public class ReadXMLFile {
+public class ReadXMLDebugSessionFile {
 
 	public static final class Timestamp {
 
