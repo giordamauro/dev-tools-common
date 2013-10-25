@@ -63,6 +63,6 @@ public class TestCurl {
 
 		Curl.get(
 				"https://api.enterprise.apigee.com/v1/o/mgiorda/environments/test/stats/apis?select=sum(cache_hit)&timeUnit=month&timeRange=08/01/2013%2000:00~08/31/2014%2023:59&filter=(apiproxy%20eq%20'worldbank-bundle')")
-				.setUser("mgiorda@apigee.com", "1234321Nomejodas").send();
+				.setUser("mgiorda@apigee.com", "1234321Apigee").addHeader("MyHeader", "\"\"").send();
 	}
 }
