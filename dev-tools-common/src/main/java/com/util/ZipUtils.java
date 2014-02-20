@@ -41,23 +41,27 @@ public class ZipUtils {
 
 			while (ze != null) {
 
-				String fileName = ze.getName();
-				File newFile = new File(outputFolder + File.separator + fileName);
+				if (!ze.isDirectory()) {
 
-				logger.info("UnZiping file : " + newFile.getAbsoluteFile());
+					String fileName = ze.getName();
+					File newFile = new File(outputFolder + "\\" + fileName);
 
-				// create all non exists folders
-				// else you will hit FileNotFoundException for compressed folder
-				new File(newFile.getParent()).mkdirs();
+					logger.info("UnZiping file : " + newFile.getAbsoluteFile());
 
-				FileOutputStream fos = new FileOutputStream(newFile);
+					// create all non exists folders
+					// else you will hit FileNotFoundException for compressed
+					// folder
+					new File(newFile.getParent()).mkdirs();
 
-				int len;
-				while ((len = zis.read(buffer)) > 0) {
-					fos.write(buffer, 0, len);
+					FileOutputStream fos = new FileOutputStream(newFile);
+
+					int len;
+					while ((len = zis.read(buffer)) > 0) {
+						fos.write(buffer, 0, len);
+					}
+
+					fos.close();
 				}
-
-				fos.close();
 				ze = zis.getNextEntry();
 			}
 
